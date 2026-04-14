@@ -15,7 +15,7 @@ O foco aqui foi entender como os dados fluem entre as classes e como criar uma i
 - **Blindagem de Erros:** Tratamento de entradas de teclado para evitar que o programa feche por erro de digitação.
 
 ## 🛠️ Tecnologias e Ferramentas
-- **Linguagem:** C# (.NET 8.0)
+- **Linguagem:** C# (.NET 10.0)
 - **Editor:** VSCodium (Open Source)
 - **Sistema Operacional:** CachyOS (Linux)
 

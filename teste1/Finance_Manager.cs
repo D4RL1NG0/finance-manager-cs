@@ -53,21 +53,13 @@ public class Finance_Manager
 
     public void Balance()
     {
-        _valueBalance = 0;
+        double entradas = _transaction.Where(t => t.Type == "deposito").Sum(t => t.Value);
 
-        foreach(Transactions transaction in _transaction)
-        {
-            if(transaction.Type.ToLower() == "deposito")
-            {
-                _valueBalance+=transaction.Value;
-            }
+        double saidas = _transaction.Where(t => t.Type == "retirada").Sum(t => t.Value);
 
-            else
-            {
-                _valueBalance-=transaction.Value;
-            }
-        }
-        Console.WriteLine($"O balanco total atualizado e de {_valueBalance:C}!");
+        _valueBalance = entradas -saidas;
+
+        Console.WriteLine($"O balanco total {_valueBalance:C}!");
     }
     /* FIM FUNCAO BALANCO TOTAL */
 

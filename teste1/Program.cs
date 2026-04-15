@@ -19,7 +19,11 @@ public class Program
        while(choice!=4)
        {
 
-            Console.WriteLine($"Oque deseja:\n 1-Nova Transacao.\n 2-Mostrar Extrato.\n 3-Balanco Total.\n 4-Sair.");
+            Console.WriteLine("Oque deseja:");
+            Console.WriteLine("1-Nova Transacao.");
+            Console.WriteLine("2-Balanco Total.");
+            Console.WriteLine("3-Opcoes de Extrato.");
+            Console.WriteLine("4-Sair.");
             Console.WriteLine("Digite o numero correspondente a acao que deseja:");
 
             if(!int.TryParse(Console.ReadLine(), out choice))
@@ -47,11 +51,11 @@ public class Program
                     string T = "";
                     while(true)
                     {
-                        Console.WriteLine("Tipo: Receita/Retirada:\n");
+                        Console.WriteLine("Tipo: Deposito/Retirada:\n");
 
                         T = Console.ReadLine()!.ToLower().Trim();
 
-                        if(T == "receita" || T == "retirada")
+                        if(T == "deposito" || T == "retirada")
                         {
                             break;
                         }
@@ -68,14 +72,44 @@ public class Program
 
                 case 2:
 
-                    FM.showList();
-                    break;
-
-                case 3:
                     FM.Balance();
                     break;
 
-                case 4:
+                case 3:
+                    Console.WriteLine("Que tipo de Extrato deseja:");
+                    Console.WriteLine("1-Entradas.");
+                    Console.WriteLine("2-Saidas.");
+                    Console.WriteLine("3-Extrato Completo.");
+
+                    int choice2;
+
+                    if(!int.TryParse(Console.ReadLine(),out choice2))
+                    {
+                        Console.WriteLine("Digite uma opcao valida!");
+                    }
+
+                    else if(choice2 == 1)
+                    {
+                        FM.ShowFilteredList("in");
+                    }
+                    else if(choice2 == 2)
+                    {
+                        FM.ShowFilteredList("out");
+                    }
+                    else if(choice2 == 3)
+                    {
+                        FM.ShowFilteredList("all");
+                    }
+                    
+
+                    else
+                    {
+                        Console.WriteLine("Digite uma opcao valida!");
+                    }
+                    break;
+
+                case 4: 
+
                     Console.WriteLine("Fechando aplicacao...");
                     break;
             }

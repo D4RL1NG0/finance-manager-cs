@@ -7,5 +7,12 @@ public class Transactions
     public double Value {get; set;}
     public string Type {get; set;} = string.Empty;
     
+    public Transactions (int id, string desc, double val, string typ)
+    {
+        Id = id;
+        Description = desc;
+        Value = val;
+        Type = typ;
+    }
     
 }

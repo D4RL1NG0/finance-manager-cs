@@ -9,14 +9,10 @@ public class Finance_Manager
     private int _proxID = 1;
     public void addTransaction (string desc, double val, string typ)
     {
-        Transactions T = new Transactions();
-        T.Id = _proxID;
-        T.Description = desc;
-        T.Value = val;
-        T.Type = typ;
-        _proxID++;
+    
+        _transaction.Add(new Transactions(_proxID,desc,val,typ));
 
-        _transaction.Add(T);
+        _proxID++;
         
     }
     /* FIM FUNCAO NOVA TRANSACAO */
@@ -29,12 +25,12 @@ public class Finance_Manager
          
         var result = Filter switch
         {
-           
+
             "in" => _transaction.Where(t => t.Type.ToLower().Trim() == "deposito"),
             "out" => _transaction.Where(t => t.Type.ToLower().Trim() == "retirada"),
 
-            "all" => _transaction
-
+            _ => _transaction,
+            
         };
 
         if(!result.Any())

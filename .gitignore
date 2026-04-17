@@ -1,7 +1,11 @@
 bin/
 obj/
 .vscode/
+.vs/
 *.user
 *.suo
 .DS_Store
 Thumbs.db
+*.db
+*.db-shm
+*.db-wal

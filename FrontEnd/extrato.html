@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Extrato</title>
+</head>
+<body onload="verSaldo(); buscarDados('all')">
+    <div class="container">
+        <a href="index.html" style="text-decoration:none; color:var(--primary)">← Voltar</a>
+        
+        <div class="balance-card">
+            <h2>Saldo Atual</h2>
+            <h1 id="display-saldo">R$ 0,00</h1>
+        </div>
+
+        <div style="display:flex; justify-content:center; margin-bottom:20px;">
+            <button class="btn-outline" onclick="buscarDados('all')">Tudo</button>
+            <button class="btn-outline" onclick="buscarDados('in')">Entradas</button>
+            <button class="btn-outline" onclick="buscarDados('out')">Saídas</button>
+        </div>
+
+        <div id="resultado"></div>
+    </div>
+    <script src="api.js"></script>
+</body>
+</html>

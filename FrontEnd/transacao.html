@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Nova Transação</title>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" style="text-decoration:none; color:var(--primary); font-weight:bold; display:block; margin-bottom:20px">⬅ Voltar</a>
+        <h2 style="text-align:center; margin-bottom:25px">Nova Movimentação</h2>
+        
+        <input type="text" id="desc" placeholder="O que você comprou/recebeu?">
+        <input type="number" id="valor" placeholder="Valor R$ 0.00">
+        
+        <button class="btn-primary" style="background:var(--success)" onclick="cadastrarGasto('in')">EFETUAR DEPÓSITO</button>
+        <button class="btn-primary" style="background:var(--danger)" onclick="cadastrarGasto('out')">EFETUAR RETIRADA</button>
+    </div>
+    <script src="api.js"></script>
+</body>
+</html>

@@ -1,36 +1,41 @@
-# Gerenciador Financeiro - ASP.NET Core Web API + Entity Framework
+# 💰 Finance Pro - Full Stack Financial Manager
 
-Este é um projeto de gestão financeira que evoluiu de uma aplicação Console para uma **Web API robusta**. Construído com o propósito de consolidar aprendizado em Programação Orientada a Objetos (POO), arquitetura de APIs modernas e persistência de dados real.
+Este é um projeto de gestão financeira que evoluiu de uma aplicação Console para uma **Web API robusta** com um **Front-end moderno e responsivo**. O projeto consolida aprendizado em Programação Orientada a Objetos (POO), persistência de dados real e integração completa entre Back-end e Front-end.
 
 ## 💡 Sobre o projeto
-Este código foi **escrito 100% no braço**. Cada classe, a lógica de persistência com **Entity Framework Core**, e agora a exposição de dados via **EndPoints (API)**, foi pensada e digitada manualmente. 
-
-O foco saiu do simples terminal e agora utiliza o padrão de mercado para sistemas distribuídos: uma API que pode servir um site, um aplicativo ou qualquer outro sistema.
+O núcleo deste sistema (Back-end) foi desenvolvido **100% manualmente**, focado em entender a arquitetura de uma API real. Para dar vida a esses dados, utilizei assistência de IA para a construção da interface, focando o meu aprendizado na **lógica de integração**: como fazer o JavaScript "conversar" corretamente com o meu código em C#.
 
 ## 🚀 O que ele faz
+- **Interface Estilo App:** Front-end limpo com temática "Fintech", incluindo modo Timeline para transações.
 - **Arquitetura Web API:** Exposição de recursos via HTTP (GET, POST) para manipulação de finanças.
-- **Registro de Transações Persistente:** Cadastro de entradas (Depósitos) e saídas (Retiradas) em banco de dados SQLite.
-- **Tratamento de Exceções Reais:** O sistema impede saques maiores que o saldo disponível e valores negativos, retornando erros HTTP apropriados (400 Bad Request).
-- **ID Automático (Banco de Dados):** Chaves primárias gerenciadas pelo motor do banco.
-- **Cálculo de Balanço no Back-end:** A lógica de saldo é processada pelo servidor, garantindo a integridade dos dados.
-- **Persistência de Dados:** Uso de SQLite para garantir que os dados sobrevivam a reinicializações do servidor.
+- **Registro Persistente:** Cadastro de entradas (Depósitos) e saídas (Retiradas) em banco de dados SQLite.
+- **Lógica de Negócio Real:** O sistema impede saques maiores que o saldo disponível e valida valores, retornando erros claros via JSON.
+- **Timeline Inteligente:** Exibição das transações mais recentes no topo, com ícones e cores dinâmicas.
+- **Integração Assíncrona:** Uso de `fetch` e `async/await` para comunicação em tempo real com o servidor.
 
 ## 🛠️ Tecnologias e Ferramentas
-- **Linguagem:** C# (.NET 10.0)
+### **Back-end (Foco do Estudo)**
+- **Linguagem:** C# (.NET Core)
 - **Framework:** ASP.NET Core (Web API)
 - **ORM:** Entity Framework Core (EF Core)
 - **Banco de Dados:** SQLite
-- **Ferramentas de Teste:** cURL / Postman / Navegador
+
+### **Front-end (Desenvolvido com assistência de IA)**
+- **Linguagem:** JavaScript (Vanilla JS), HTML5 e CSS3.
+
+### **Ambiente**
 - **Editor:** VS Code / VSCodium
 - **Sistema Operacional:** CachyOS (Linux)
 
-## 🧠 O que eu aprendi até agora
-- **Migração de Arquitetura:** Como transformar um código de lógica pura (Console) em um serviço acessível via Web (API).
-- **Controllers e Roteamento:** Entendi como o ASP.NET recebe uma requisição na URL e decide qual parte do código deve responder.
-- **Tratamento de Erros Profissional:** Uso de `try/catch` e `throw new` para disparar erros de negócio e transformá-los em respostas JSON claras para o usuário.
-- **Injeção de Dependência:** Como conectar o Banco de Dados e os Gerentes de Lógica (Managers) dentro do ecossistema do ASP.NET.
-- **CORS & Segurança:** Entendendo como liberar (ou bloquear) o acesso de diferentes Front-ends à minha API.
-- **Versionamento com Git:** Gerenciamento de histórico, uso de `.gitignore` para manter o projeto limpo e documentação de evolução.
+## 🧠 O que eu aprendi neste projeto
+- **Integração Full Stack:** Como conectar o Front-end ao Back-end garantindo que ambos falem a mesma "língua" (JSON).
+- **Consumo de APIs:** Entendi a lógica de como enviar e receber pacotes de dados via protocolo HTTP.
+- **Mapeamento de Dados:** Como traduzir as ações da interface (cliques em botões) para as regras de negócio definidas no C#.
+- **Tratamento de Cache:** Técnicas para garantir que o navegador sempre busque o saldo atualizado no banco.
+- **Versionamento com Git:** Organização de um repositório que contém tanto o código do servidor quanto os arquivos do cliente.
+
+## 🤖 Nota sobre o Front-end
+A interface visual, o CSS e a estrutura base do JavaScript foram gerados com auxílio de **Inteligência Artificial (Gemini)**. O objetivo dessa escolha foi focar meus esforços no aprendizado de **C# e ASP.NET Core**, utilizando a IA para acelerar a criação de uma interface funcional que permitisse testar a API em um cenário real de uso.
 
 ---
 Desenvolvido com foco e imersão por [D4RL1NG0]. 🚀

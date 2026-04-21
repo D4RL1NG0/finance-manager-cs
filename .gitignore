@@ -1,11 +1,14 @@
-bin/
-obj/
+[Bb]in/
+[Oo]bj/
 .vscode/
 .vs/
 *.user
 *.suo
+.userosscache
+.sln.docstates
 .DS_Store
 Thumbs.db
 *.db
 *.db-shm
 *.db-wal
+publish/

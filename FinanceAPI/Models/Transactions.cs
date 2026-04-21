@@ -1,4 +1,4 @@
-namespace teste1;
+namespace FinanceAPI.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
 public class Transactions

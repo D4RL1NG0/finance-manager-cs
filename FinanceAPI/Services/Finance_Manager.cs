@@ -15,9 +15,22 @@ public class Finance_Manager
     /* INICIO FUNCAO NOVA TRANSACAO */
     public void addTransaction (string description, double value, string type)
     {
-            var nova = new Transactions(description, value, type);
-            _context.Transactions.Add(nova);
-            _context.SaveChanges();
+        if(value <= 0)
+        {
+            throw new ArgumentException("Valor da transacao deve ser maior que zero!");
+        }
+
+        if(type.ToLower() == "retirada")
+        {
+            var saldoatual = Balance();
+            if(value > saldoatual)
+            {
+                throw new ArgumentException("Saldo insuficiente para realizar a retirada!");
+            }
+        }
+        var nova = new Transactions(description, value, type);
+        _context.Transactions.Add(nova);
+        _context.SaveChanges();
     }
     /* FIM FUNCAO NOVA TRANSACAO */
 

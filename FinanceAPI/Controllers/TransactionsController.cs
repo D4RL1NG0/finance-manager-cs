@@ -33,11 +33,19 @@ public class TransactionsController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Criar(Transactions nova)
+    public IActionResult Criar([FromBody]Transactions nova)
     {
-        _manager.addTransaction(nova.Description, nova.Value, nova.Type);
-        return Ok(new{mensagem = "Transacao salva com sucesso"});
+        try
+        {
+            _manager.addTransaction(nova.Description, nova.Value, nova.Type);
+            return Ok(new{mensagem = "Transacao salva com sucesso"});
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(new{mensagem = ex.Message});
+        }
     }
+       
 
 
 }

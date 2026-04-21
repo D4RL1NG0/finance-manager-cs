@@ -1,6 +1,7 @@
 using FinanceAPI.Models;
 using FinanceAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace FinanceAPI.Services;
 public class Finance_Manager
@@ -33,6 +34,20 @@ public class Finance_Manager
         _context.SaveChanges();
     }
     /* FIM FUNCAO NOVA TRANSACAO */
+    /*INICIO FUNCAO REMOVER TRANSACAO*/
+    public void removeTransaction(int idInformado)
+    {
+        var idParaRemover = _context.Transactions.Find(idInformado);
+
+        if(idParaRemover == null)
+        {
+            throw new ArgumentException("ID Invalido");
+        }
+        
+        _context.Transactions.Remove(idParaRemover);
+        _context.SaveChanges();
+    }
+    /*INICIO FUNCAO REMOVER TRANSACAO*/
 
     /* INICIO FUNCAO OPCOES DE EXTRATO IN/OUT/ALL */
     public List<Transactions> ShowFilteredList(string Filter)

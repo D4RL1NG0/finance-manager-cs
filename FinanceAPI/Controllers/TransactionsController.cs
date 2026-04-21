@@ -45,6 +45,19 @@ public class TransactionsController : ControllerBase
             return BadRequest(new{mensagem = ex.Message});
         }
     }
+    [HttpDelete("{id}")]
+    public IActionResult Remover([FromRoute]int id)
+    {
+        try
+        {
+            _manager.removeTransaction(id);
+            return Ok(new{mensagem = "Transacao removida com sucesso!"});
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(new{mensagem = ex.Message});
+        }
+    }
        
 
 

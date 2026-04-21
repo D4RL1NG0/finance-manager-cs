@@ -2,6 +2,7 @@ using FinanceAPI.Data;
 using FinanceAPI.Models;
 using FinanceAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,20 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 builder.Services.AddScoped<Finance_Manager>();
 
+builder.Services.AddCors(Options =>
+{
+    Options.AddPolicy("PermitirTudo", policy =>
+    {
+        policy.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors("PermitirTudo");
 
 app.MapControllers();
 

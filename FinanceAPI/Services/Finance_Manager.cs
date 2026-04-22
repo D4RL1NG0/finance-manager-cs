@@ -82,4 +82,31 @@ public class Finance_Manager
         
     }
     /* FIM FUNCAO BALANCO TOTAL */
+
+    /* INICIO FUNCAO ATUALIZAR TRANSACAO */
+    public void updateTransaction(int idSearch, string description, double value, string type)
+    {
+        var forChange = _context.Transactions.Find(idSearch);
+        if(forChange == null){throw new ArgumentException("Essa transacao nao existe");}
+        if(value <= 0){throw new ArgumentException("O valor deve ser maior que zero!");}
+        if(type != "deposito" && type != "retirada"){throw new ArgumentException("Opcao invalida");}
+        
+        var saldoatual = Balance();
+
+        double anulando = forChange.Type == "deposito" ? -forChange.Value : forChange.Value;
+        double valorfuturo = type.ToLower().Trim() == "deposito" ? value : -value;
+
+        double valorfinal = saldoatual+anulando+valorfuturo;
+
+        if(valorfinal < 0 )
+        {
+            throw new ArgumentException("Saldo insuficiente!");
+        }
+
+        forChange.Description = description;
+        forChange.Value = value;
+        forChange.Type = type;
+        _context.SaveChanges();
+    }
+    /* INICIO FUNCAO ATUALIZAR TRANSACAO */
 }

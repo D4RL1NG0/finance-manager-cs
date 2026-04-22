@@ -58,6 +58,21 @@ public class TransactionsController : ControllerBase
             return BadRequest(new{mensagem = ex.Message});
         }
     }
+
+    [HttpPut("{id}")]
+    public IActionResult Update(int id, [FromBody] Transactions request)
+    {
+        try
+        {
+            _manager.updateTransaction(id, request.Description, request.Value, request.Type);
+            return Ok(new{mensagem = "Atualizacao feita com sucesso"});
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(new{mensagem = ex.Message});
+        }
+        
+    }
        
 
 

@@ -14,16 +14,16 @@ public class Finance_Manager
     }
     
     /* INICIO FUNCAO NOVA TRANSACAO */
-    public void addTransaction (string description, double value, string type)
+    public void addTransaction (string description, decimal value, TransactionsType type)
     {
         if(value <= 0)
         {
             throw new ArgumentException("Valor da transacao deve ser maior que zero!");
         }
 
-        if(type.ToLower() == "retirada")
+        if(type == TransactionsType.Retirada)
         {
-            var saldoatual = Balance();
+            decimal saldoatual = Balance();
             if(value > saldoatual)
             {
                 throw new ArgumentException("Saldo insuficiente para realizar a retirada!");
@@ -54,10 +54,10 @@ public class Finance_Manager
     {
             var query = _context.Transactions.AsQueryable();
 
-            var result = Filter.ToLower().Trim() switch
+            var result = Filter.ToLower() switch
             {
-                "in" => query.Where(t => t.Type == "deposito"),
-                "out" => query.Where(t => t.Type == "retirada"),
+                "in" => query.Where(t => t.Type == TransactionsType.Deposito),
+                "out" => query.Where(t => t.Type == TransactionsType.Retirada),
                 _ => query,            
             };
 
@@ -66,15 +66,15 @@ public class Finance_Manager
     /* FIM FUNCAO OPCOES DE EXTRATO IN/OUT/ALL */
 
     /* INICIO FUNCAO BALANCO TOTAL */
-    public double Balance()
+    public decimal Balance()
     {
     
-        double entradas = _context.Transactions
-        .Where(t => t.Type == "deposito")
+        decimal entradas = _context.Transactions
+        .Where(t => t.Type == TransactionsType.Deposito)
         .Sum(t => t.Value);
 
-        double saidas = _context.Transactions
-        .Where(t => t.Type == "retirada")
+        decimal saidas = _context.Transactions
+        .Where(t => t.Type == TransactionsType.Retirada)
         .Sum(t => t.Value);
 
         return entradas - saidas;
@@ -84,19 +84,18 @@ public class Finance_Manager
     /* FIM FUNCAO BALANCO TOTAL */
 
     /* INICIO FUNCAO ATUALIZAR TRANSACAO */
-    public void updateTransaction(int idSearch, string description, double value, string type)
+    public void updateTransaction(int idSearch, string description, decimal value, TransactionsType type)
     {
         var forChange = _context.Transactions.Find(idSearch);
         if(forChange == null){throw new ArgumentException("Essa transacao nao existe");}
         if(value <= 0){throw new ArgumentException("O valor deve ser maior que zero!");}
-        if(type != "deposito" && type != "retirada"){throw new ArgumentException("Opcao invalida");}
         
-        var saldoatual = Balance();
+        decimal saldoatual = Balance();
 
-        double anulando = forChange.Type == "deposito" ? -forChange.Value : forChange.Value;
-        double valorfuturo = type.ToLower().Trim() == "deposito" ? value : -value;
+        decimal anulando = forChange.Type == TransactionsType.Deposito ? -forChange.Value : forChange.Value;
+        decimal valorfuturo =  type == TransactionsType.Deposito ? value : -value;
 
-        double valorfinal = saldoatual+anulando+valorfuturo;
+        decimal valorfinal = saldoatual+anulando+valorfuturo;
 
         if(valorfinal < 0 )
         {

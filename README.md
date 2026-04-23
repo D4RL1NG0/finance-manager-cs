@@ -30,6 +30,7 @@ O núcleo deste sistema (Back-end) foi desenvolvido **100% manualmente**, focado
 
 ## 🧠 O que eu aprendi neste projeto
 - **Arquitetura em Camadas:** Separação de responsabilidades entre Controller (comunicação) e Manager (lógica de negócio).
+- **Refatoração com Enums:** Implementação de tipos enumerados para categorizar transações, garantindo maior segurança de tipos e eliminando erros de digitação de strings (Magic Strings).
 - **Integração Full Stack:** Como conectar o Front-end ao Back-end garantindo que ambos falem a mesma "língua" (JSON).
 - **Consumo de APIs:** Entendi a lógica de como enviar e receber pacotes de dados via protocolo HTTP e lidar com rotas.
 - **Tratamento de Erros:** Uso de `try/catch` e `throw` para validar regras (como saldo insuficiente ou ID inexistente).

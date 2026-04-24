@@ -37,7 +37,7 @@ public class TransactionsController : ControllerBase
     {
         try
         {
-            _manager.addTransaction(nova.Description, nova.Value, nova.Type);
+            _manager.AddTransaction(nova.Description, nova.Value, nova.Type);
             return Ok(new{mensagem = "Transacao salva com sucesso"});
         }
         catch(Exception ex)
@@ -50,7 +50,7 @@ public class TransactionsController : ControllerBase
     {
         try
         {
-            _manager.removeTransaction(id);
+            _manager.RemoveTransaction(id);
             return Ok(new{mensagem = "Transacao removida com sucesso!"});
         }
         catch(Exception ex)
@@ -64,7 +64,7 @@ public class TransactionsController : ControllerBase
     {
         try
         {
-            _manager.updateTransaction(id, request.Description, request.Value, request.Type);
+            _manager.UpdateTransaction(id, request.Description, request.Value, request.Type);
             return Ok(new{mensagem = "Atualizacao feita com sucesso"});
         }
         catch(Exception ex)
